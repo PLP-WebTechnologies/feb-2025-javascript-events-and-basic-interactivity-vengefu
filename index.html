@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week Six Assignment</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="container">
+      <h1>Week Six Assignment</h1>
+      
+
+      <!-- Form Validation Example -->
+      <form id="userForm">
+        <h2>Sign Up</h2>
+        <div>
+          <label for="email">Email:</label>
+          <input type="text" id="email" />
+          <span id="emailError" class="error"></span>
+        </div>
+        <div>
+          <label for="password">Password (min 6 chars):</label>
+          <input type="password" id="password" />
+          <span id="passwordError" class="error"></span>
+        </div>
+        <button type="submit">Submit</button>
+        <p id="formMessage"></p>
+      </form>
+
+      <!-- Interactive Elements -->
+      <div>
+        <h2>Interactive Section</h2>
+        <button id="colorBtn">Change body's Background</button>
+        <button id="tooltipBtn">Show Tooltip</button>
+        <div id="tooltip">This is an interactive tooltip!</div>
+      </div>
+    </section>
+    <script>
+      // Form Validation
+      const form = document.getElementById("userForm");
+      const emailError = document.getElementById("emailError");
+      const passwordError = document.getElementById("passwordError");
+      const formMessage = document.getElementById("formMessage");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        let isValid = true;
+
+        // Email validation
+        const email = document.getElementById("email").value;
+        if (!email.includes("@")) {
+          emailError.textContent = "Please enter a valid email";
+          isValid = false;
+        } else {
+          emailError.textContent = "";
+        }
+
+        // Password validation
+        const password = document.getElementById("password").value;
+        if (password.length < 6) {
+          passwordError.textContent = "Password must be at least 6 characters";
+          isValid = false;
+        } else {
+          passwordError.textContent = "";
+        }
+
+        if (isValid) {
+          formMessage.textContent = "Form submitted successfully!";
+          formMessage.className = "success";
+        } else {
+          formMessage.textContent = "Please fix errors";
+          formMessage.className = "error";
+        }
+      });
+
+      // Interactive Elements
+      const colorBtn = document.getElementById("colorBtn");
+      const tooltipBtn = document.getElementById("tooltipBtn");
+      const tooltip = document.getElementById("tooltip");
+
+      colorBtn.addEventListener("click", function () {
+        document.body.style.backgroundColor = `hsl(${
+          Math.random() * 360
+        }, 70%, 90%)`;
+      });
+
+      tooltipBtn.addEventListener("mouseover", function () {
+        tooltip.style.display = "block";
+      });
+
+      tooltipBtn.addEventListener("mouseout", function () {
+        tooltip.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
